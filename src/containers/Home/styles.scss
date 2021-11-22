@@ -52,10 +52,29 @@
             }
             
             &.Triangle {
-                height: 0;
-                width: 0;
-                border-left: 140px solid red;
-                border-bottom: 230px solid transparent;
+                .Triangle_Outside {
+                    position: relative;
+                    width: 150px;
+                    height: 150px;
+                    -webkit-clip-path: polygon(3.70% 11.66%, 68% 68%, 6% 78%);
+                    clip-path: polygon(3.70% 11.66%, 68% 68%, 6% 78%);
+    
+                    .Triangle_Inside {
+                        position: absolute;
+                        top: 22px;
+                        left: 10px;
+                        right: 28px;
+                        bottom: 17px;
+                        // background-image: url('../../assets/backgrounds/main_background.png');
+                        background-color: $lightSecondary;
+                        -webkit-clip-path: polygon(3.70% 11.66%, 68% 68%, 6% 78%);
+                        clip-path: polygon(3.70% 11.66%, 68% 68%, 6% 78%);
+
+                        &.Main {
+                            background-image: url('../../assets/backgrounds/main_background.png');
+                        }
+                    }
+                }
             }
 
             @media screen and (max-width: 360px) {
@@ -286,10 +305,17 @@
                 margin-right: 100px;
     
                 .JumpsSection_Content_Item {
+                    display: flex;
                     color: #000;
                     font-size: $m;
                     border-bottom: 4px solid #000;
                     margin: 5px 0;
+
+                    input {
+                        background: transparent;
+                        border: none;
+                        width: 100%;
+                    }
                 }
     
                 .JumpsSection_Content_Footer {
@@ -306,6 +332,7 @@
                             background-color: $lightPrimary;
                             padding: 2px 10px;
                             height: 30px;
+                            cursor: pointer;
                         }
         
                         &.next {

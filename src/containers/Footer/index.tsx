@@ -6,7 +6,6 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
 
 import youtubeIcon from "../../assets/images/youtube_icon.png"
 import facebookIcon from "../../assets/images/facebook_icon.png"

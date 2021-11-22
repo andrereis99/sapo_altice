@@ -42,6 +42,24 @@ export class Home extends React.Component<any, any> {
 		return { border: `4px solid ${selectedColor}` };
 	}
 
+	passedTheGoal = () => {
+		return false
+	}
+
+	solution = (X: number, Y: number, D: number) => {
+		const { selectedColor } = this.props;
+
+		let auxX = X;
+
+		if (selectedColor === "#3fb990") {
+			auxX = 3;
+		} else if (selectedColor === "#4b88a6" && auxX > 7) {
+			auxX = 7;
+		}
+
+		return Math.ceil((Y - auxX) / D)
+	}
+
 	renderColorPickerSection() {
 		const { isMobile } = this.state;
 		const { selectedColor, dispatch } = this.props;
@@ -102,13 +120,36 @@ export class Home extends React.Component<any, any> {
 							top: 360,
 							right: 190,
 						}} />
-					{/*<div
+					<div
 						className="Section_Shape Triangle"
-						style={{
-							// ...this.applyShapeColor(),
-							top: 380,
-							right: 190,
-						}} />*/}
+						style={isMobile ? {
+							bottom: 240,
+							right: 45,
+							transform: 'rotate(28deg) scale(-0.7, 0.7)',
+						} : {
+							top: 285,
+							right: 270,
+							transform: 'rotate(35deg) scale(0.7)',
+						}}>
+						<div className="Triangle_Outside" style={{ background: selectedColor }}>
+							<div className="Triangle_Inside Main" />
+						</div>
+					</div>
+					<div
+						className="Section_Shape Triangle"
+						style={isMobile ? {
+							top: 190,
+							right: 180,
+							transform: 'rotate(53deg) scale(-0.4, 0.4)',
+						} : {
+							top: 420,
+							right: 540,
+							transform: 'rotate(80deg)',
+						}}>
+						<div className="Triangle_Outside" style={{ background: selectedColor }}>
+							<div className="Triangle_Inside Main" />
+						</div>
+					</div>
 				</div>
 				<img alt="sapo symbol" src={SapoSymbol} />
 			</div>
@@ -173,6 +214,21 @@ export class Home extends React.Component<any, any> {
 					</div>
 				</div>
 				<div className="Section_Shapes">
+					<div
+						className="Section_Shape Triangle"
+						style={isMobile ? {
+							top: 207,
+							right: -12,
+							transform: 'rotate(35deg) scale(0.7)',
+						} : {
+							top: 65,
+							left: 270,
+							transform: 'rotate(35deg) scale(0.7)',
+						}}>
+						<div className="Triangle_Outside" style={{ background: selectedColor }}>
+							<div className="Triangle_Inside" />
+						</div>
+					</div>
 					{!isMobile ? <div
 						className="Section_Shape Circle"
 						style={{
@@ -201,6 +257,7 @@ export class Home extends React.Component<any, any> {
 	}
 	
 	renderJumpsSection() {
+		const { jumps, X, Y, D } = this.state;
 		const { selectedColor } = this.props;
 
 		return (
@@ -210,28 +267,40 @@ export class Home extends React.Component<any, any> {
 						O SAPO
 					</div>
 					<div className="Section_Title">
-						Deu 0 saltos
+						{jumps ? `O SAPO deu ${jumps} saltos` : 'Deu 0 saltos'}
 					</div>
 					<div className="JumpsSection_Content">
 						<div className="JumpsSection_Content_Board">
 							<div className="JumpsSection_Content_Item">
 								X
+								<input type="text" name="X" value={X} onChange={(e) => this.setState({ X: e.target.value })} />
 							</div>
 							<div className="JumpsSection_Content_Item">
 								Y
+								<input type="text" name="Y" value={Y} onChange={(e) => this.setState({ Y: e.target.value })} />
 							</div>
 							<div className="JumpsSection_Content_Item">
 								D
+								<input type="text" name="D" value={D} onChange={(e) => this.setState({ D: e.target.value })} />
 							</div>
 							<div className="JumpsSection_Content_Footer">
-								<div className="JumpsSection_Content_Button Main">
+								<div
+									style={!X || !Y || !D ?
+												{ cursor: 'not-allowed' } : {}}
+									className="JumpsSection_Content_Button Main"
+									onClick={() => X && Y && D &&
+													this.setState({ jumps: this.solution(X, Y, D) })}>
 									Dá o salto
 								</div>
 								<div className="JumpsSection_Content_Button next" />
 							</div>
 						</div>
 						<div className="JumpsSection_Content_Frog">
-							<img className="JumpsSection_Content_Frog_Image" alt="sapo mon" src={SapoMon} />
+							<img
+								className="JumpsSection_Content_Frog_Image"
+								alt="sapo mon"
+								src={jumps ? SapoSymbol : SapoMon}
+								style={jumps ? { left: '56%' } : {}} />
 							<div
 								className="JumpsSection_Content_Goal"
 								style={{ border: `4px dashed ${selectedColor}` }} />
