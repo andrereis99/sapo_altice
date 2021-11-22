@@ -1,0 +1,367 @@
+@import '../../styles/variables';
+
+.Section {
+    .Section_Subtitle {
+        display: flex;
+        align-items: flex-end;
+        height: 75px;
+        margin-left: 50vw;
+        border-left: 4px solid $textColor;
+        padding-left: 10px;
+        font-size: $s;
+
+        @media screen and (max-width: 360px) {
+            margin-left: 50px;
+        }
+    }
+
+    .Section_Title {
+        color: black;
+        font-size: $xl;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        margin: 20px 0;
+        
+        @media screen and (max-width: 360px) {
+            justify-content: flex-start;
+            margin: 20px;
+        }
+    }
+
+    .Section_Shapes {
+        position: absolute;
+        height: 100%;
+        width: 100vw;
+        top: 0;
+
+        .Section_Shape {
+            position: absolute;
+            
+            &.Circle {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+            }
+            
+            &.Rectangle {
+                height: 100px;
+                width: 20px;
+                transform: rotate(-30deg);
+            }
+            
+            &.Triangle {
+                height: 0;
+                width: 0;
+                border-left: 140px solid red;
+                border-bottom: 230px solid transparent;
+            }
+
+            @media screen and (max-width: 360px) {
+                &.Rectangle {
+                    height: 85px;
+                    width: 15px;
+                    transform: rotate(-60deg);
+                }
+            }
+        }
+    }
+}
+
+.ColorPickerSection {
+    background-image: url('../../assets/backgrounds/main_background.png');
+    height: 100vh;
+
+    .ColorPickers {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 365px;
+        left: 125px;
+        z-index: 999;
+
+        .ColorPicker {
+            padding: 7px;
+            margin: 7px;
+            cursor: pointer;
+            
+            &.__active {
+                border: 1px solid red;
+
+                .ColorPicker_color {
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+
+            .ColorPicker_color {
+                height: 80px;
+                width: 80px;
+            }
+        }
+    }
+
+    img {
+        position: absolute;
+        bottom: -140px;
+        right: 0;
+        z-index: 1;
+    }
+
+    @media screen and (max-width: 360px) {
+        .ColorPickers {
+            bottom: -82px;
+            left: 0;
+        }
+
+        img {
+            bottom: -23px;
+            width: 100vw;
+        }
+    }
+}
+
+.BrandSection {
+    position: relative;
+    margin-top: -170px;
+    width: 100vw;
+    border-top: 80px solid transparent;
+    border-bottom: 80px solid transparent;
+    border-right: 100vw solid $lightSecondary;
+    padding-top: 160px;
+    padding-bottom: 110px;
+
+    .BrandSection_Content {
+        position: relative;
+        padding: 110px 13vw 0 19vw;
+        width: 75vw;
+        z-index: 1;
+        margin-left: 24vw;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: -100px;
+            height: 500px;
+            z-index: -1;
+        }
+
+        p {
+            font-size: $l;
+
+            span {
+                color: white;
+            }
+        }
+        
+        .BrandSection_Content_Dots {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            
+            .BrandSection_Content_Dot {
+                height: 13px;
+                width: 13px;
+                margin: 3px;
+                border-radius: 50%;
+                background-color: black;
+            }
+        }
+        
+        .BrandSection_Tabs {
+            display: flex;
+
+            .BrandSection_Container {
+                display: flex;
+            }
+            
+            .BrandSection_Tab {
+                display: flex;
+                align-items: center;
+                color: white;
+                font-size: $s;
+                
+                &.tab1 {
+                    background-color: $primaryColor;
+                    padding: 0 15px;
+                }
+
+                &.next {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 38px 32px 0 0;
+                    border-color: $primaryColor transparent transparent transparent;
+                    margin-right: 11px;
+                }
+
+                &.tab2 {
+                    background-color: $lightPrimary;
+                    transform: skewX(-40deg);
+                    padding: 0px 22px;
+
+                    .BrandSection_Tab_Content {
+                        transform: skewX(40deg);
+                    }
+
+                    @media screen and (max-width: 360px) {
+                        transform: none;
+
+                        .BrandSection_Tab_Content {
+                            transform: none;
+                        }
+                    }
+                }
+                
+                &.next2 {
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 38px 0 0 32px;
+                    border-color: transparent transparent transparent $lightPrimary;
+                    margin-right: 11px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        padding-top: 250px;
+
+        .BrandSection_Content {
+            padding: 45px 10vw 0 5vw;
+            width: 90vw;
+            margin-left: 0;
+
+            img {
+                height: auto;
+                width: 100vw;
+                left: auto;
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+            }
+
+            p {
+                font-size: $m;
+            }
+
+
+            .BrandSection_Content_Dots {
+                position: absolute;
+                right: 0;
+                bottom: 110px;
+            }
+
+            .BrandSection_Tabs {
+                display: block;
+
+                .BrandSection_Container {
+                    margin: 10px 0;
+                }
+            } 
+
+        }
+    }
+}
+
+.JumpsSection {
+    transform: skewY(5deg);
+    background-color: white;
+    margin: -80px 0;
+    padding: 90px 0;
+
+    .JumpsSection_Container {
+        transform: skewY(-5deg);
+
+        .JumpsSection_Content {
+            display: flex;
+            justify-content: center;
+    
+            .JumpsSection_Content_Board {
+                height: 325px;
+                width: 310px;
+                background-color: $secondaryColor;
+                padding: 60px 65px;
+                margin-right: 100px;
+    
+                .JumpsSection_Content_Item {
+                    color: #000;
+                    font-size: $m;
+                    border-bottom: 4px solid #000;
+                    margin: 5px 0;
+                }
+    
+                .JumpsSection_Content_Footer {
+                    display: flex;
+                    margin: 42px -25px;
+    
+                    .JumpsSection_Content_Button {
+                        display: flex;
+                        align-items: center;
+                        color: white;
+                        font-size: $xs;
+                        
+                        &.Main {
+                            background-color: $lightPrimary;
+                            padding: 2px 10px;
+                            height: 30px;
+                        }
+        
+                        &.next {
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 30px 29px 0 0;
+                            border-color: $lightPrimary transparent transparent transparent;
+                            margin-right: 11px;
+                        }
+                    }
+                }
+            }
+
+            .JumpsSection_Content_Frog {
+                position: relative;
+                width: 50vw;
+
+                .JumpsSection_Content_Frog_Image {
+                    position: absolute;
+                    height: 150px;
+                    width: 150px;
+                    top: 30%;
+                }
+    
+                .JumpsSection_Content_Goal {
+                    position: absolute;
+                    transform: rotate(-30deg);
+                    height: 100%;
+                    right: 50%;
+                }
+            }
+    
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .JumpsSection_Container {
+            .JumpsSection_Content {
+                flex-direction: column;
+
+                .JumpsSection_Content_Board {
+                    padding: 50px 39px 50px 60px;
+                    margin: 0;
+                    width: 100vw;
+                }
+
+                .JumpsSection_Content_Frog {
+                    min-height: 280px;
+                    width: 100vw;
+
+                    .JumpsSection_Content_Goal {
+                        height: 330px;
+                    }
+                }
+            }
+        }
+    }
+}

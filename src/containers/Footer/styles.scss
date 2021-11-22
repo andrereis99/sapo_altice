@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.FooterContainer {
+	display: flex;
+	background-color: $footerBackgroundColor;
+	height: 250px;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 60px;
+}

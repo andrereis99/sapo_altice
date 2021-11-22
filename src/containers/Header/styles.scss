@@ -1,0 +1,113 @@
+@import "../../styles/variables";
+
+.HeaderContainer {
+	z-index: 10;
+	padding: 0px 90px;
+	position: absolute;
+	width: 100vw;
+	right: 0;
+	
+	.Header {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 200px;
+		min-height: 200px;
+		position: relative;
+		
+		.HeaderSection {
+			display: flex;
+			align-items: center;
+			height: 100%;
+		
+			.HeaderLogo {
+				display: flex;
+				align-items: center;
+				height: 100%;
+				width: 100%;
+				max-width: 200px;
+				cursor: pointer;
+				text-decoration: none;
+				color: $primaryColor;
+				font-size: $xs;
+		
+				img {
+					height: 100%;
+					object-fit: contain;
+				}
+			}
+		
+			.Header_Nav {
+				display: flex;
+		
+				.HeaderLink {
+					margin: 0 10px;
+					color: #000;
+					padding: 0 10px 4px 3px;
+		
+					&.__active {
+						color: #fff;
+						background-color: #000;
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 360px) {
+		padding: 0px 15px;
+
+		.Header {
+			display: flex;
+			justify-content: space-between;
+			height: 90px;
+			min-height: 90px;
+
+			.HeaderSection {
+				height: 100px;
+				min-height: 100px;
+		
+				.HeaderLogo {
+					max-width: 140px;
+					max-height: 100px;
+
+					img {
+						max-height: 100px;
+					}
+				}
+
+				.HamgurgerMenu {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: flex-end;
+					height: 100%;
+					width: 100%;
+					cursor: pointer;
+
+					&.__open {
+						margin: 18px;
+					}
+	
+					div {
+						height: 5px;
+						width: 30px;
+						background-color: black;
+						margin: 2px 10px;
+					}
+
+					.CrossLeft {
+						margin: -2px;
+						transform: rotate(45deg);
+					}
+
+					.CrossRight {
+						margin: -2px;
+						transform: rotate(-45deg);
+					}
+				}
+			}
+		}
+	}
+}
